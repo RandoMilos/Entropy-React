@@ -1,6 +1,18 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    header{
+        flex-shrink: 0;
+    }
+
     body{
         background-color: #040d16;
         font-family: ${props => props.theme.fonts.base};

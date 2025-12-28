@@ -1,31 +1,23 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+import styled from "styled-components";
 
-.App {
+const AppContainer = styled.div`
     display: flex;
     flex-direction: column;
     height: 100vh;
     width: 100vw;
     overflow: hidden; 
     background-color: #050d17;
-}
+`;
 
-header, .playerContainer {
-    flex-shrink: 0; 
-}
-
-.mainContainer {
+const MainContainer = styled.div`
     display: flex;
     flex: 1;       
     width: 100%;
     height: 0;      
     overflow: hidden; 
-}
+`;
 
-.mainContentContainer {
+const MainContentContainer = styled.div`
     flex: 1;
     height: 100%;   
     overflow-y: scroll; 
@@ -45,4 +37,15 @@ header, .playerContainer {
         background: #4f4f4f;
         border-radius: 10px;
     }
+`;
+
+const PlayerContainer = styled.div`
+    flex-shrink: 0;
+`;
+
+export {
+    AppContainer,
+    MainContainer,
+    MainContentContainer,
+    PlayerContainer
 }

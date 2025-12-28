@@ -5,6 +5,8 @@ import loadingResultsIcon from '../../assets/images/SI.png'
 import errorFetching from '../../assets/images/brokeSearch.png'
 import RecentSearches from "Components/RecentSearches";
 import useHistorySearch from "hooks/useHistorySearch";
+import { SearchResultAlbumArtist, SearchResultAlbumContainer, SearchResultAlbumThumbnail, SearchResultAlbumTitle } from "theme/SharedStyles";
+import { ResultContainer, ResultErrorText, ResultImage, ResultSubTitle, ResultTitle, SearchTitle } from "./styles";
 
 const SearchResults = () => {
     const [searchParams] = useSearchParams();
@@ -21,48 +23,47 @@ const SearchResults = () => {
     }
 
     if (isLoading) return (
-        <div className="ResultContainer">
-            <h2 className="ResultContainer__title">Cargando resultados</h2>
-            <img className="ResultContainer__image" alt="Cargando" src={loadingResultsIcon}/>
-        </div>
+        <ResultContainer>
+            <ResultTitle>Cargando resultados</ResultTitle>
+            <ResultImage alt="Cargando" src={loadingResultsIcon}/>
+        </ResultContainer>
     )
     if (error) return (
-        <div className="ResultContainer">
-            <h2 className="ResultContainer__title">Error al descargar la informacion</h2>
-            <img className="ResultContainer__image" src={errorFetching} alt="Icono error"/>
-            <p className="ResultContainer__errorText">{error.message}</p>
-        </div>
+        <ResultContainer>
+            <ResultTitle>Error al descargar la informacion</ResultTitle>
+            <ResultImage src={errorFetching} alt="Icono error"/>
+            <ResultErrorText>{error.message}</ResultErrorText>
+        </ResultContainer>
     )
     
     
 
     return(
-        <div className="searchResults">
+        <SearchResultAlbumContainer>
             {
                 albums && albums.length > 0 ? (
                     <>
-                        <h2 className="searchTitle">Resultados para la busqueda: {query}</h2>
+                        <SearchTitle>Resultados para la busqueda: {query}</SearchTitle>
                         {albums.map((album) => (
-                        <div 
-                            className="searchResultAlbum" 
+                        <SearchResultAlbumContainer
                             key={album.idAlbum}
                             onClick={()=> handleAlbumClick(album)}
                             style={{cursor: 'pointer'}}>
-                            <img className="searchResultAlbum__thumbnail" src={album.strAlbumThumb} alt={`${album.strAlbum} Caratula`}/>
-                            <p className="searchResultAlbum__title">{album.strAlbum}</p>
-                            <p className="searchResultAlbum__album">{album.strArtist}</p>
-                        </div>
+                            <SearchResultAlbumThumbnail src={album.strAlbumThumb} alt={`${album.strAlbum} Caratula`}/>
+                            <SearchResultAlbumTitle>{album.strAlbum}</SearchResultAlbumTitle>
+                            <SearchResultAlbumArtist>{album.strArtist}</SearchResultAlbumArtist>
+                        </SearchResultAlbumContainer>
                         ))}
                     </>
                 ) : (
-                    <div className="ResultContainer">
-                            <h2 className="ResultContainer__title">Aquí aparecera tu busqueda.</h2>
-                            <p className="ResultContainer__subTitle">Si ya buscaste y no se muestra nada puedes intentar cambiando la busqueda o con un artista diferente.</p>
-                    </div>
+                    <ResultContainer>
+                            <ResultTitle>Aquí aparecera tu busqueda.</ResultTitle>
+                            <ResultSubTitle>Si ya buscaste y no se muestra nada puedes intentar cambiando la busqueda o con un artista diferente.</ResultSubTitle>
+                    </ResultContainer>
                 )
             }
             <RecentSearches/>
-        </div>
+        </SearchResultAlbumContainer>
     )
 }
 

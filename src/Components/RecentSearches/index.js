@@ -1,6 +1,8 @@
 import useHistorySearch from "hooks/useHistorySearch";
 import { useNavigate } from "react-router-dom";
 import deleteSearch from '../../assets/icons/trash.svg'
+import { HistoryTitle, NoHistory, RecentSearchContainer, RecentSearchContainerGrid } from "./styles";
+import { ClearButton, SearchResultAlbumArtist, SearchResultAlbumContainer, SearchResultAlbumThumbnail, SearchResultAlbumTitle } from "theme/SharedStyles";
 
 const RecentSearches = () => {
     const { history, clearHistory} = useHistorySearch();
@@ -8,7 +10,7 @@ const RecentSearches = () => {
     const navigate = useNavigate();
 
     if (history && history.length === 0) return (
-        <p className="noHistory">Tu historial de busqueda esta vacio, que tal si empiezas buscando tu artista favorito! :)</p>
+        <NoHistory>Tu historial de busqueda esta vacio, que tal si empiezas buscando tu artista favorito! :)</NoHistory>
     )
 
 
@@ -17,26 +19,26 @@ const RecentSearches = () => {
     }
 
     return(
-        <div className="recentSearchContainer">
-            <div className="historyTitle">
+        <RecentSearchContainer>
+            <HistoryTitle>
                 <h3>Busquedas recientes</h3>
-                <button className="clearButton" onClick={clearHistory}><img src={deleteSearch}/></button>
-            </div>
-            <div className="recentSearchContainer__grid">
+                <ClearButton onClick={clearHistory}><img src={deleteSearch}/></ClearButton>
+            </HistoryTitle>
+            <RecentSearchContainerGrid>
                 {
                     history.map((album, index) => (
-                        <div className="searchResultAlbum" 
+                        <SearchResultAlbumContainer 
                             key={album.idAlbum || index}
                             style={{cursor: 'pointer'}}
                             onClick={() => handleAlbumClick(album)}>
-                            <img className="searchResultAlbum__thumbnail" src={album.strAlbumThumb} alt={`${album.strAlbum} Caratula`}/>
-                            <p className="searchResultAlbum__title">{album.strAlbum}</p>
-                            <p className="searchResultAlbum__album">{album.strArtist}</p>
-                        </div>
+                            <SearchResultAlbumThumbnail src={album.strAlbumThumb} alt={`${album.strAlbum} Caratula`}/>
+                            <SearchResultAlbumTitle className="searchResultAlbum__title">{album.strAlbum}</SearchResultAlbumTitle>
+                            <SearchResultAlbumArtist className="searchResultAlbum__album">{album.strArtist}</SearchResultAlbumArtist>
+                        </SearchResultAlbumContainer>
                     ))
                 }
-            </div>
-        </div>
+            </RecentSearchContainerGrid>
+        </RecentSearchContainer>
     )
 }
 

@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import searchIcon from 'assets/icons/search.svg';
 import { useNavigate } from 'react-router-dom';
 import useHistorySearch from 'hooks/useHistorySearch';
+import { NaviIcon, SearchBarBody, SearchBarInput } from './styles';
+import { ClearButton } from 'theme/SharedStyles';
 
 const SearchBar = () => {
     
@@ -31,16 +33,16 @@ const SearchBar = () => {
     
     return(
         <form onSubmit={handleSubmitSearch}>
-            <div className='searchBarBody' to="/search-results">    
-                <input 
+            <SearchBarBody>    
+                <SearchBarInput 
                     className='searchBarText' 
                     type='search' 
                     value={searchInput}
                     onChange={handleSearchChange}
                     onFocus={handleFocus}
-                    placeholder='Buscar'></input>
-                <button type='submit' className="clearButton"><img className="naviIcon" src={searchIcon} alt="Boton busqueda"></img></button>
-            </div>    
+                    placeholder='Buscar'></SearchBarInput>
+                <ClearButton><NaviIcon src={searchIcon} alt="Boton busqueda"/></ClearButton>
+            </SearchBarBody>    
         </form>
     );
 };

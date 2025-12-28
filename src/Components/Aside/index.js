@@ -8,26 +8,25 @@ import songsButton from 'assets/icons/songs.svg'
 import luxIcon from 'assets/images/lux-icon.png'
 import recentButton from 'assets/icons/clock.svg'
 import mainPlaylistThumb from 'assets/images/main-playlist.jpg'
-import { Link } from "react-router-dom";
-
+import { LibraryContainer, LMenuButton, LMenuContainer, LMenuIcon, LMenuSubIcon, LMenuTitle, PlaylistCotainer } from "./styles";
 const Aside = () => {
     return(
-        <aside className="leftMenuContainer">
-            <h1 className="lMenuTitle">Entropy</h1>
-            <Link className="lMenuButton" to="/"><img className="lMenuIcon" src={homeButton} alt="Boton Inicio"></img><p>Inicio</p></Link>
-            <div className="libraryContainer">
-                <Link className="lMenuButton" to="/"><img className="lMenuSubIcon" src={recentButton} alt="Boton Recientes"></img><p>Recientes</p></Link>
-                <Link className="lMenuButton" to="/"><img className="lMenuSubIcon" src={songsButton} alt="Boton Guardados"></img><p>Canciones Guardadas</p></Link>
-                <Link className="lMenuButton" to="/"><img className="lMenuSubIcon" src={artistButton} alt="Boton Artistas"></img><p>Artistas</p></Link>
-                <Link className="lMenuButton" to="/"><img className="lMenuSubIcon" src={albumButton} alt="Boton Albums"></img><p>Albums</p></Link>
-            </div>
-                <Link className="lMenuButton" to="/"><img className="lMenuIcon" src={libraryBotton} alt="Biblioteca"></img><p>Bibioteca</p></Link>
-            <div className="playlistContainer">
-                <Link className="lMenuButton" to="/"><img className="lMenuIcon" src={playlistButton} alt="Boton Playlists"></img><p>Playlists</p></Link>
-                <Link className="lMenuButton" to="/"><img className="lMenuSubIcon" src={luxIcon} alt="Playlist Hits en Español"></img><p>Hits en Español</p></Link>
-                <Link className="lMenuButton" to="/"><img className="lMenuSubIcon" src={mainPlaylistThumb} alt="Playlist Méne: Imperdibles"></img><p>Méne: Imperdibles</p></Link>
-            </div>
-        </aside>
+        <LMenuContainer>
+            <LMenuTitle>Entropy</LMenuTitle>
+            <LMenuButton to="/"><LMenuIcon src={homeButton} alt="Boton Inicio"/><p>Inicio</p></LMenuButton>
+            <LibraryContainer>
+                <LMenuButton to="/"><LMenuSubIcon src={recentButton} alt="Boton Recientes"/><p>Recientes</p></LMenuButton>
+                <LMenuButton to="/"><LMenuSubIcon src={songsButton} alt="Boton Guardados"/><p>Canciones Guardadas</p></LMenuButton>
+                <LMenuButton to="/"><LMenuSubIcon src={artistButton} alt="Boton Artistas"/><p>Artistas</p></LMenuButton>
+                <LMenuButton to="/"><LMenuSubIcon src={albumButton} alt="Boton Albums"/><p>Albums</p></LMenuButton>
+            </LibraryContainer>
+                <LMenuButton to="/"><LMenuIcon src={libraryBotton} alt="Biblioteca"/><p>Bibioteca</p></LMenuButton>
+            <PlaylistCotainer>
+                <LMenuButton to="/"><LMenuIcon src={playlistButton} alt="Boton Playlists"/><p>Playlists</p></LMenuButton>
+                <LMenuButton to="/"><LMenuSubIcon src={luxIcon} alt="Playlist Hits en Español"/><p>Hits en Español</p></LMenuButton>
+                <LMenuButton to="/"><LMenuSubIcon src={mainPlaylistThumb} alt="Playlist Méne: Imperdibles"/><p>Méne: Imperdibles</p></LMenuButton>
+            </PlaylistCotainer>
+        </LMenuContainer>
     )
 };
 
